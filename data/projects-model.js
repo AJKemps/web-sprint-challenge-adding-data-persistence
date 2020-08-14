@@ -60,5 +60,5 @@ function addTask(task) {
 }
 
 function findTasks() {
-  return db("projects");
+  return db("tasks").innerJoin("projects", "tasks.project_id", "projects.id");
 }
