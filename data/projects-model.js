@@ -17,6 +17,10 @@ function findByProjectId(id) {
   return db("projects").where({ id });
 }
 
+function findByTaskId(id) {
+  return db("tasks").where({ id });
+}
+
 function findByResourceId(id) {
   return db("resources").where({ id });
 }
@@ -45,8 +49,14 @@ function findResources() {
   return db("resources");
 }
 
-function addTask() {
-  return db("projects");
+function addTask(task) {
+  return db("tasks")
+    .insert(task)
+    .then((response) => {
+      const id = response[0];
+
+      return findByTaskId(id);
+    });
 }
 
 function findTasks() {
