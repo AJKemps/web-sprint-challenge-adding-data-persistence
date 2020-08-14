@@ -2,7 +2,6 @@ const db = require("../data/db-config.js");
 
 module.exports = {
   findProjects,
-  findByProjectId,
   addProject,
   addResource,
   findResources,
@@ -18,6 +17,10 @@ function findByProjectId(id) {
   return db("projects").where({ id });
 }
 
+function findByResourceId(id) {
+  return db("resources").where({ id });
+}
+
 function addProject(project) {
   return db("projects")
     .insert(project)
@@ -28,8 +31,14 @@ function addProject(project) {
     });
 }
 
-function addResource() {
-  return db("projects");
+function addResource(resource) {
+  return db("resources")
+    .insert(resource)
+    .then((response) => {
+      const id = response[0];
+
+      return findByResourceId(id);
+    });
 }
 
 function findResources() {
