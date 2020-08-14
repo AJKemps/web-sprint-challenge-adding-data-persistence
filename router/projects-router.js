@@ -41,6 +41,20 @@ router.get("/tasks", (req, res) => {
     });
 });
 
+router.get("/projectresources", (req, res) => {
+  Projects.findProjectResources({})
+    .then((response) => {
+      res.status(200).json({ message: response });
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message:
+          "there was an issue while acccessing the project_resources database",
+        error: error.message,
+      });
+    });
+});
+
 router.post("/", (req, res) => {
   let newProject = req.body;
 

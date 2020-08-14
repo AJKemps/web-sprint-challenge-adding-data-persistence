@@ -7,10 +7,15 @@ module.exports = {
   findResources,
   addTask,
   findTasks,
+  findProjectResources,
 };
 
 function findProjects() {
   return db("projects");
+}
+
+function findProjectResources() {
+  return db("project_resources");
 }
 
 function findByProjectId(id) {
