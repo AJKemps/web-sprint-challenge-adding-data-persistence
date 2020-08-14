@@ -42,7 +42,7 @@ function addResource(resource) {
 }
 
 function findResources() {
-  return db("projects");
+  return db("resources");
 }
 
 function addTask() {
